@@ -13,20 +13,23 @@ To navigate to the projects directory and list all file permissions (including h
 ```bash
 cd projects
 ls -la
-
-Output / Current Permissions
+utput / Current Permissions
 
 The ls -la command produced the following output:
-drwx--x---  2 researcher2 research_team 4096 Mar 14 18:40 drafts
--rw-rw-rw-  1 researcher2 research_team   46 Mar 14 18:40 project_k.txt
--rw-r-----  1 researcher2 research_team   46 Mar 14 18:40 project_m.txt
--rw-rw-r--  1 researcher2 research_team   46 Mar 14 18:40 project_r.txt
--rw-rw-r--  1 researcher2 research_team   46 Mar 14 18:40 project_t.txt
--rw--w----  1 researcher2 research_team   46 Mar 14 18:40 .project_x.txt
 
-Note: The -la flag combines -l (long format) and -a (all files, including hidden). Hidden files begin with a period (.), such as .project_x.txt.
+drwx--x---  2 researcher2 research_team 4096 Mar 14 18:40 drafts
 
----
+-rw-rw-rw-  1 researcher2 research_team   46 Mar 14 18:40 project_k.txt
+
+-rw-r-----  1 researcher2 research_team   46 Mar 14 18:40 project_m.txt
+
+-rw-rw-r--  1 researcher2 research_team   46 Mar 14 18:40 project_r.txt
+
+-rw-rw-r--  1 researcher2 research_team   46 Mar 14 18:40 project_t.txt
+
+-rw--w----  1 researcher2 research_team   46 Mar 14 18:40 .project_x.txt
+
+​Note: The -la flag combines -l (long format) and -a (all files, including hidden). Hidden files begin with a period (.), such as .project_x.txt.
 
 ## Task 2: Describe the Permissions String
 
@@ -41,11 +44,13 @@ Note: The -la flag combines -l (long format) and -a (all files, including hidden
 
 ---
 
+# FilePermissionsLinux_Portfolio.md
+
 ## Task 3: Change File Permissions
 
-The organization does not allow other users to have write access to any files.  
-`project_k.txt` was found to grant write permission to others (`-rw-rw-rw-`).  
-Additionally, `project_m.txt` should not be readable by the group.
+The organization does not allow other users to have write access to any files.
+`project_k.txt` was found to grant write permission to others (`-rw-rw-rw-`).
+Additionally, `project_m.txt` should not be readable or writable by the group.
 
 ### Commands Used
 
@@ -56,40 +61,21 @@ chmod o-w project_k.txt
 # Remove read permission for group
 chmod g-r project_m.txt
 
-After these changes, no unauthorized write access remained for any file in the projects directory.
-
----
-
-## Task 4: Change File Permissions on a Hidden File
-
-The hidden file .project_x.txt (identifiable by the leading period in its name) is archived and should not be writable by anyone, while remaining readable by both the user and group.
+Task 4: Change File Permissions on a Hidden File
+​The hidden file .project_x.txt (identifiable by the leading period in its name) is archived and should not be writable by anyone, while remaining readable by both the user and group.
 The ls -la command revealed it had write permissions for both user and group.
-
-## Command Used
-
-```bash
+​Command Used
 chmod u-w,g-w,g+r .project_x.txt
 
 This removed write access for both user and group, while ensuring the group retains read access.
-
----
-
-## Task 5: Change Directory Permissions
-
-Only the researcher2 user should be allowed to access the drafts subdirectory.
+​Task 5: Change Directory Permissions
+​Only the researcher2 user should be allowed to access the drafts subdirectory.
 The ls -l output showed the group had execute permissions (drwx--x---), meaning group members could access its contents.
-
-## Command Used
-
-```bash
+​Command Used
 chmod g-x drafts
 
 This removed the execute permission for the group from the drafts directory, ensuring only researcher2 can access it and its contents.
-
----
-
-## Summary
-
+Summary
 In this activity, I demonstrated the use of Linux Bash shell commands to audit and manage file permissions within the /home/researcher2/projects directory.
 Using ls -la, I examined all file and directory permissions, including hidden files (those starting with a period).
 I identified and corrected several permission misconfigurations using the chmod command:
