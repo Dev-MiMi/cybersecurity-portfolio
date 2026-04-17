@@ -32,3 +32,4 @@ During routine monitoring, the SIEM generated an alert regarding rapid, multi-po
 ## ✅ Conclusion
 The alert behaved as expected, successfully identifying reconnaissance-style network traffic. Because the source of the traffic was a verified internal team utilizing a legitimate tool (Nessus), the incident was categorized as intended behavior. The ticket was closed as a **False Positive**, and no further remediation or escalation was required. 
 
+<img width="1080" height="1822" alt="XRecorder_20260416_08" src="https://github.com/user-attachments/assets/3ba70213-d24c-43ed-9f0d-35c28ca360af" />
